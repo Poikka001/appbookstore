@@ -1,8 +1,7 @@
 package mate.academy.intro;
 
-import java.math.BigDecimal;
-
-import mate.academy.intro.service.ProductService;
+import mate.academy.intro.model.Book;
+import mate.academy.intro.service.BookService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -11,11 +10,11 @@ import org.springframework.context.annotation.Bean;
 
 @SpringBootApplication
 public class IntroApplication {
-    private final ProductService productService;
+    private final BookService bookService;
 
     @Autowired
-    public IntroApplication(ProductService productService) {
-        this.productService = productService;
+    public IntroApplication(BookService bookService) {
+        this.bookService = bookService;
     }
 
     public static void main(String[] args) {
@@ -25,13 +24,11 @@ public class IntroApplication {
     @Bean
     public CommandLineRunner commandLineRunner() {
         return args -> {
-            User iPhone = new User();
-            iPhone.setName("iPhone 10");
-            iPhone.setPrice(BigDecimal.valueOf(999));
+            Book book = new Book();
 
-            productService.save(iPhone);
+            bookService.save(book);
 
-            System.out.println(productService.findAll());
+            System.out.println(bookService.findAll());
         };
     }
 }
