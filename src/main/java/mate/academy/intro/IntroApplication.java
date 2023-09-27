@@ -11,7 +11,6 @@ import org.springframework.context.annotation.Bean;
 @SpringBootApplication
 public class IntroApplication {
     private final BookService bookService;
-    //+
 
     @Autowired
     public IntroApplication(BookService bookService) {
