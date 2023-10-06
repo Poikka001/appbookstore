@@ -24,11 +24,6 @@ public class BookServiceImpl implements BookService {
     @Override
     public BookDto createBook(CreateRequestBookDto bookDto) {
         Book book = bookMapper.toDto(bookDto);
-        book.setIsbn("" + new Random().
-                ints(0, 10).
-                limit(13).
-                mapToObj(Integer::toString).
-                collect(Collectors.joining()));
         return bookMapper.toDto(bookRepository.createBook(book));
     }
 
