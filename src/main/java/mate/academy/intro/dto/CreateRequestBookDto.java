@@ -13,7 +13,7 @@ import java.util.stream.Collectors;
 public class CreateRequestBookDto {
     @NotNull
     private String title;
-
+    @NotNull
     private String author;
 
     private String isbn = "" + new Random().
