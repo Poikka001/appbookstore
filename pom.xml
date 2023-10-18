@@ -10,7 +10,7 @@
   </parent>
 
   <groupId>mate.academy</groupId>
-  <artifactId>liquibase</artifactId>
+  <artifactId>appbookstore</artifactId>
   <version>0.0.1-SNAPSHOT</version>
   <name>liquibase</name>
   <description>liquibase</description>
