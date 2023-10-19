@@ -10,16 +10,10 @@
   </parent>
 
   <groupId>mate.academy</groupId>
-  <artifactId>liquibase</artifactId>
+  <artifactId>appbookstore</artifactId>
   <version>0.0.1-SNAPSHOT</version>
   <name>liquibase</name>
   <description>liquibase</description>
-
-<!--  <groupId>mate.academy</groupId>-->
-<!--  <artifactId>appbookstore</artifactId>-->
-<!--  <version>0.0.1-SNAPSHOT</version>-->
-<!--  <name>appbookstore</name>-->
-<!--  <description>appbookstore</description>-->
 
   <properties>
     <java.version>17</java.version>
@@ -74,6 +68,11 @@
       <groupId>org.liquibase</groupId>
       <artifactId>liquibase-maven-plugin</artifactId>
       <version>${liquibase.version}</version>
+    </dependency>
+
+    <dependency>
+      <groupId>org.hibernate.validator</groupId>
+      <artifactId>hibernate-validator</artifactId>
     </dependency>
 
   </dependencies>
