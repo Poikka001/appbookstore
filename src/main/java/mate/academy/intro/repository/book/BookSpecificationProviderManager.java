@@ -1,7 +1,7 @@
 package mate.academy.intro.repository.book;
 
 import lombok.RequiredArgsConstructor;
-import mate.academy.intro.exeption.EntityNotFoundException;
+import mate.academy.intro.exception.EntityNotFoundException;
 import mate.academy.intro.model.Book;
 import mate.academy.intro.repository.SpecificationProvider;
 import mate.academy.intro.repository.SpecificationProviderManager;
