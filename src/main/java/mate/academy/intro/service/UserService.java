@@ -2,8 +2,8 @@ package mate.academy.intro.service;
 
 import mate.academy.intro.dto.user.UserRegistrationRequestDto;
 import mate.academy.intro.dto.user.UserResponseDto;
-import mate.academy.intro.exception.RegistrationException;
+import mate.academy.intro.exception.UncheckedIOException;
 
 public interface UserService {
-    UserResponseDto register(UserRegistrationRequestDto requestDto) throws RegistrationException;
+    UserResponseDto register(UserRegistrationRequestDto requestDto) throws UncheckedIOException;
 }

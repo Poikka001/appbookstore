@@ -3,7 +3,7 @@ package mate.academy.intro.service;
 import lombok.RequiredArgsConstructor;
 import mate.academy.intro.dto.user.UserRegistrationRequestDto;
 import mate.academy.intro.dto.user.UserResponseDto;
-import mate.academy.intro.exception.RegistrationException;
+import mate.academy.intro.exception.UncheckedIOException;
 import mate.academy.intro.mapper.UserMapper;
 import mate.academy.intro.model.User;
 import mate.academy.intro.repository.user.UserRepository;
@@ -16,9 +16,9 @@ public class UserServiceImpl implements UserService{
     private final UserMapper userMapper;
 
     @Override
-    public UserResponseDto register(UserRegistrationRequestDto requestDto) throws RegistrationException {
+    public UserResponseDto register(UserRegistrationRequestDto requestDto) throws UncheckedIOException {
         if (userRepository.findByEmail(requestDto.getEmail()).isPresent()) {
-            throw new RegistrationException("Can't register user");
+            throw new UncheckedIOException("Can't register user");
         }
 
         User user = new User();
