@@ -51,22 +51,6 @@ public class BookController {
     @GetMapping("/search")
     @Operation(description = "Get all books")
     @ApiResponse(responseCode = "200", description = "All books")
-    @Parameters(value = {
-            @Parameter(name = "page",
-                    description = "Page number to search",
-                    schema = @Schema(implementation = Integer.class)),
-            @Parameter(name = "size",
-                    description = "Number of books per page",
-                    schema = @Schema(implementation = Integer.class)),
-            @Parameter(name = "sort",
-                    description = "Possible fields for sorting: 'title', 'author', 'price'",
-                    schema = @Schema(implementation = String.class)),
-            @Parameter(name = "'title' - additional properties",
-                    description = "Search book by title",
-                    schema = @Schema(implementation = String[].class)),
-            @Parameter(name = "'author' - additional properties",
-                    description = "Search book by author",
-                    schema = @Schema(implementation = String[].class))})
     public Page<BookDto> searchBooks(Pageable pageable, @RequestBody Map<String, String[]> params) {
         return bookService.search(pageable, params);
     }
