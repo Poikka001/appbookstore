@@ -4,7 +4,7 @@ import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import mate.academy.intro.dto.user.UserRegistrationRequestDto;
 import mate.academy.intro.dto.user.UserResponseDto;
-import mate.academy.intro.exception.UncheckedIOException;
+import mate.academy.intro.exception.RegistrationException;
 import mate.academy.intro.service.UserService;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -19,7 +19,7 @@ public class AuthController {
 
     @PostMapping("/registration")
     public UserResponseDto registrationUser(@Valid @RequestBody UserRegistrationRequestDto requestDto)
-            throws UncheckedIOException {
-        return userService.register(requestDto);
+            throws RegistrationException {
+        return userService.registerUser(requestDto);
     }
 }
