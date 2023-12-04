@@ -15,25 +15,22 @@ import java.util.Set;
 
 @Service
 @RequiredArgsConstructor
-public class UserServiceImpl implements UserService{
+public class UserServiceImpl implements UserService {
     private final UserRepository userRepository;
     private final UserMapper userMapper;
     private final RoleRepository roleRepository;
 
     @Override
-    public UserResponseDto registerUser(UserRegistrationRequestDto requestDto)
+    public UserResponseDto register(UserRegistrationRequestDto requestDto)
             throws RegistrationException {
+        if (requestDto.getEmail().startsWith("admin")) {
+            User admin = userToMapper(requestDto);
+            admin.setRoles(Set.of(roleRepository.findRoleByRoleName(Role.RoleName.ADMIN)));
+            return userMapper.toUserResponseDto(userRepository.save(admin));
+        }
         User user = userToMapper(requestDto);
         user.setRoles(Set.of(roleRepository.findRoleByRoleName(Role.RoleName.USER)));
         return userMapper.toUserResponseDto(userRepository.save(user));
-    }
-
-    @Override
-    public UserResponseDto registerAdmin(UserRegistrationRequestDto requestDto)
-            throws RegistrationException {
-        User admin = userToMapper(requestDto);
-        admin.setRoles(Set.of(roleRepository.findRoleByRoleName(Role.RoleName.ADMIN)));
-        return userMapper.toUserResponseDto(userRepository.save(admin));
     }
 
     private User userToMapper(UserRegistrationRequestDto requestDto) throws RegistrationException {
