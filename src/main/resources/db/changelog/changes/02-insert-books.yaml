@@ -1,0 +1,32 @@
+databaseChangeLog:
+  - changeSet:
+      id: insert-books
+      author: Bohun
+      changes:
+        - insert:
+            tableName: book
+            columns:
+              - column: { name: title, value: "Lord of the Rings" }
+              - column: { name: author, value: "J. R. R. Tolkien" }
+              - column: { name: isbn, value: "1836204739183" }
+              - column: { name: price, value: "9" }
+              - column: { name: description, value: "The saga of a group of sometimes reluctant heroes who set forth to save their world from consummate evil" }
+              - column: { name: cover_image, value: "https://cdn8.openculture.com/wp-content/uploads/2013/02/The-Fellowship-Of-The-Ring-Book-Cover-by-JRR-Tolkien_1-480.jpg" }
+        - insert:
+            tableName: book
+            columns:
+              - column: { name: title, value: "Game of Thrones" }
+              - column: { name: author, value: "G. R. R. Martin" }
+              - column: { name: isbn, value: "8847305847182" }
+              - column: { name: price, value: "8" }
+              - column: { name: description, value: "Tells a tale of lords and ladies, soldiers and sorcerers, assassins and bastards, who come together in a time of grim omens" }
+              - column: { name: cover_image, value: "https://timelinecovers.pro/facebook-cover/download/game-of-thrones6125-facebook-cover.jpg" }
+        - insert:
+            tableName: book
+            columns:
+              - column: { name: title, value: "The Call of Cthulhu" }
+              - column: { name: author, value: "H. P. Lovecraft" }
+              - column: { name: isbn, value: "65758493016726" }
+              - column: { name: price, value: "7" }
+              - column: { name: description, value: "Chronicles Francis Wayland Thurston as he goes through notes of his dead uncle and other accounts of a mysterious cult" }
+              - column: { name: cover_image, value: "https://images.booksense.com/images/836/611/9798637611836.jpg" }

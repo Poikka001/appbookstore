@@ -1,0 +1,29 @@
+databaseChangeLog:
+  - changeSet:
+      id: insert-users
+      author: Bohun
+      changes:
+        - insert:
+            tableName: users
+            columns:
+              - column: { name: email, value: "adminBob@gmail.com" }
+              - column: { name: password, value: "12345678" }
+              - column: { name: first_name, value: "Bob" }
+              - column: { name: last_name, value: "BobSon" }
+              - column: { name: shipping_address, value: "baker street 22" }
+        - insert:
+            tableName: users
+            columns:
+              - column: { name: email, value: "userAlice@gmail.com" }
+              - column: { name: password, value: "12345678" }
+              - column: { name: first_name, value: "Alice" }
+              - column: { name: last_name, value: "BobSon" }
+              - column: { name: shipping_address, value: "baker street 23" }
+        - insert:
+            tableName: users
+            columns:
+              - column: { name: email, value: "userJohn@gmail.com" }
+              - column: { name: password, value: "12345678" }
+              - column: { name: first_name, value: "John" }
+              - column: { name: last_name, value: "JohnSon" }
+              - column: { name: shipping_address, value: "baker street 24" }
