@@ -17,6 +17,7 @@ import org.hibernate.annotations.Where;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
+
 import java.util.Collection;
 import java.util.Set;
 
@@ -56,7 +57,8 @@ public class User implements UserDetails {
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return roles.stream()
-                .map(role -> new SimpleGrantedAuthority("ROLE_" + role.getRoleName().name()))
+                .map(role -> new SimpleGrantedAuthority("ROLE_" +
+                        role.getRoleName().name()))
                 .toList();
     }
 
