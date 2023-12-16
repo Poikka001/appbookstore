@@ -31,13 +31,14 @@ import org.springframework.web.bind.annotation.PutMapping;
 public class BookController {
     private final BookService bookService;
 
+    //-----------------------------/
     @GetMapping
     @Operation(description = "Get all books")
     @ApiResponse(responseCode = "200", description = "All books")
     public List<BookDto> getAll(Pageable pageable) {
         return bookService.findAll(pageable);
     }
-
+    //-----------------------------/
     @GetMapping("/{bookId}")
     @Operation(description = "Get book by Id")
     @ApiResponse(responseCode = "200", description = "Book by Id")

@@ -1,0 +1,15 @@
+databaseChangeLog:
+  - changeSet:
+      id: insert-categories
+      author: Bohun
+      changes:
+        - insert:
+            tableName: category
+            columns:
+              - column: { name: name, value: "Fiction" }
+              - column: { name: description, value: "Fiction books" }
+        - insert:
+            tableName: category
+            columns:
+              - column: { name: name, value: "Horror" }
+              - column: { name: description, value: "Horror books" }
