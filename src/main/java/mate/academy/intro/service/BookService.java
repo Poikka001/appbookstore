@@ -8,6 +8,8 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
 public interface BookService {
+    List<BookDto> findAllByCategoryId(Long categoryId);
+
     BookDto save(CreateBookRequestDto bookRequestDto);
 
     List<BookDto> findAll(Pageable pageable);

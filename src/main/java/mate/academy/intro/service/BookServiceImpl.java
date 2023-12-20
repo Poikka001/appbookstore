@@ -21,20 +21,31 @@ public class BookServiceImpl implements BookService {
     private final BookRepository bookRepository;
     private final BookMapper bookMapper;
     private final BookSpecificationBuilder bookSpecificationBuilder;
+
     @Override
-    public BookDto save(CreateBookRequestDto bookRequestDto) {
-        return bookMapper.toDto(bookRepository.save(bookMapper.toModel(bookRequestDto)));
+    public BookDto getBookById(Long bookId) {
+        return bookMapper.toDtoBook(bookRepository.findById(bookId).orElseThrow(
+                () -> new EntityNotFoundException("Can't get book with id: " + bookId)));
     }
+
+    @Override
+    public List<BookDto> findAllByCategoryId(Long categoryId) {
+        List<Book> books = bookRepository.findAllByCategoriesId(categoryId);
+        return books.stream()
+                .map(bookMapper::toDtoBook)
+                .collect(Collectors.toList());
+    }
+
     @Override
     public List<BookDto> findAll(Pageable pageable) {
         return bookRepository.findAll(pageable).stream()
-                .map(bookMapper::toDto)
+                .map(bookMapper::toDtoBook)
                 .collect(Collectors.toList());
     }
+
     @Override
-    public BookDto getBookById(Long bookId) {
-        return bookMapper.toDto(bookRepository.findById(bookId).orElseThrow(
-                () -> new EntityNotFoundException("Can't get book with id: " + bookId)));
+    public BookDto save(CreateBookRequestDto bookRequestDto) {
+        return bookMapper.toDtoBook(bookRepository.save(bookMapper.toEntity(bookRequestDto)));
     }
 
     @Override
@@ -42,10 +53,11 @@ public class BookServiceImpl implements BookService {
         if (!bookRepository.existsById(bookId)) {
             throw new EntityNotFoundException("Can't found book with id: " + bookId);
         }
-        Book book = bookMapper.toModel(bookRequestDto);
+        Book book = bookMapper.toEntity(bookRequestDto);
         book.setId(bookId);
-        return bookMapper.toDto(bookRepository.save(book));
+        return bookMapper.toDtoBook(bookRepository.save(book));
     }
+
     @Override
     public void deleteBook(Long bookId) {
         bookRepository.deleteById(bookId);
@@ -54,6 +66,6 @@ public class BookServiceImpl implements BookService {
     @Override
     public Page<BookDto> search(Pageable pageable, Map<String, String[]> params) {
         return bookRepository.findAll(bookSpecificationBuilder.build(params), pageable)
-                .map(bookMapper::toDto);
+                .map(bookMapper::toDtoBook);
     }
 }
