@@ -35,6 +35,3 @@ public class Category {
     @Column(nullable = false, name = "is_deleted")
     private boolean isDeleted = false;
 }
-
-
-
