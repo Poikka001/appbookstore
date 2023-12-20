@@ -13,6 +13,8 @@ import mate.academy.intro.service.BookService;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -31,19 +33,11 @@ import org.springframework.web.bind.annotation.PutMapping;
 public class BookController {
     private final BookService bookService;
 
-    //-----------------------------/
     @GetMapping
     @Operation(description = "Get all books")
     @ApiResponse(responseCode = "200", description = "All books")
     public List<BookDto> getAll(Pageable pageable) {
         return bookService.findAll(pageable);
-    }
-    //-----------------------------/
-    @GetMapping("/{bookId}")
-    @Operation(description = "Get book by Id")
-    @ApiResponse(responseCode = "200", description = "Book by Id")
-    public BookDto getBookById(@PathVariable Long bookId) {
-        return bookService.getBookById(bookId);
     }
 
     @GetMapping("/search")
@@ -76,6 +70,7 @@ public class BookController {
     @Operation(description = "Delete book by Id")
     @ApiResponse(responseCode = "200", description = "Delete book")
     public void deleteBook(@PathVariable Long bookId) {
-        bookService.deleteBook(bookId);
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        if (auth.getName().startsWith("admin")) bookService.deleteBook(bookId);
     }
 }

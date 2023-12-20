@@ -10,7 +10,6 @@ import mate.academy.intro.model.User;
 import mate.academy.intro.repository.role.RoleRepository;
 import mate.academy.intro.repository.user.UserRepository;
 import org.springframework.stereotype.Service;
-
 import java.util.Set;
 
 @Service

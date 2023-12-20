@@ -6,9 +6,11 @@ import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 
 import java.util.List;
 
-public interface BookRepository extends JpaRepository<Book,
-        Long>, JpaSpecificationExecutor<Book> {
-
+//public interface BookRepository extends JpaRepository<Book, Long>, JpaSpecificationExecutor<Book> {
 //    List<Book> findAllByCategoryId(Long categoryId);
-}
+//}
 
+
+public interface BookRepository extends JpaRepository<Book, Long>, JpaSpecificationExecutor<Book>  {
+    List<Book> findAllByCategoriesId(Long categoryId);
+}

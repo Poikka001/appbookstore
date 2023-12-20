@@ -22,31 +22,30 @@ public class BookServiceImpl implements BookService {
     private final BookMapper bookMapper;
     private final BookSpecificationBuilder bookSpecificationBuilder;
 
-//    @Override
-//    public List<BookDto> findAllByCategoryId(Long categoryId) {
-//        return bookRepository.findAllByCategoryId(categoryId).stream()
-//                .map(bookMapper::toDtoBook)
-//                .collect(Collectors.toList());
-//    }
+    @Override
+    public BookDto getBookById(Long bookId) {
+        return bookMapper.toDtoBook(bookRepository.findById(bookId).orElseThrow(
+                () -> new EntityNotFoundException("Can't get book with id: " + bookId)));
+    }
 
-    //---------/
+    @Override
+    public List<BookDto> findAllByCategoryId(Long categoryId) {
+        List<Book> books = bookRepository.findAllByCategoriesId(categoryId);
+        return books.stream()
+                .map(bookMapper::toDtoBook)
+                .collect(Collectors.toList());
+    }
+
     @Override
     public List<BookDto> findAll(Pageable pageable) {
         return bookRepository.findAll(pageable).stream()
                 .map(bookMapper::toDtoBook)
                 .collect(Collectors.toList());
     }
-    //---------/
 
     @Override
     public BookDto save(CreateBookRequestDto bookRequestDto) {
         return bookMapper.toDtoBook(bookRepository.save(bookMapper.toEntity(bookRequestDto)));
-    }
-
-    @Override
-    public BookDto getBookById(Long bookId) {
-        return bookMapper.toDtoBook(bookRepository.findById(bookId).orElseThrow(
-                () -> new EntityNotFoundException("Can't get book with id: " + bookId)));
     }
 
     @Override
@@ -58,6 +57,7 @@ public class BookServiceImpl implements BookService {
         book.setId(bookId);
         return bookMapper.toDtoBook(bookRepository.save(book));
     }
+
     @Override
     public void deleteBook(Long bookId) {
         bookRepository.deleteById(bookId);

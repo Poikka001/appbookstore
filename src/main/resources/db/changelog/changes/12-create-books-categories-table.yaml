@@ -1,0 +1,26 @@
+databaseChangeLog:
+  - changeSet:
+      id: create-users-roles-table
+      author: Bohun
+      changes:
+        - createTable:
+            tableName: books_categories
+            columns:
+              - column:
+                  name: book_id
+                  type: BIGINT
+                  constraints:
+                    foreignKeyName: FK_books_categories_book
+                    referencedTableName: books
+                    referencedColumnNames: id
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: category_id
+                  type: BIGINT
+                  constraints:
+                    foreignKeyName: FK_books_categories_category
+                    referencedTableName: categories
+                    referencedColumnNames: id
+                    primaryKey: true
+                    nullable: false
