@@ -1,6 +1,6 @@
 databaseChangeLog:
   - changeSet:
-      id: create-users-roles-table
+      id: create-book-category-table
       author: Bohun
       changes:
         - createTable:

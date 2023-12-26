@@ -1,14 +1,12 @@
 package mate.academy.intro.service;
 
 import lombok.RequiredArgsConstructor;
-import mate.academy.intro.dto.book.BookDto;
-import mate.academy.intro.dto.book.CreateBookRequestDto;
 import mate.academy.intro.dto.category.CategoryDto;
 import mate.academy.intro.dto.category.CreateCategoryRequestDto;
 import mate.academy.intro.exception.EntityNotFoundException;
 import mate.academy.intro.mapper.CategoryMapper;
 import mate.academy.intro.model.Category;
-import mate.academy.intro.repository.Category.CategoryRepository;
+import mate.academy.intro.repository.category.CategoryRepository;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
