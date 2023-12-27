@@ -3,7 +3,6 @@ package mate.academy.intro.service;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
-
 import lombok.RequiredArgsConstructor;
 import mate.academy.intro.dto.book.BookDto;
 import mate.academy.intro.dto.book.CreateBookRequestDto;
@@ -44,7 +43,6 @@ public class BookServiceImpl implements BookService {
                 .collect(Collectors.toList());
     }
 
-    //------------------/
     @Override
     public BookDto save(CreateBookRequestDto bookRequestDto) {
         return bookMapper.toDtoBook(bookRepository.save(bookMapper.toEntity(bookRequestDto)));
@@ -59,7 +57,6 @@ public class BookServiceImpl implements BookService {
         book.setId(bookId);
         return bookMapper.toDtoBook(bookRepository.save(book));
     }
-    //------------------/
 
     @Override
     public void deleteBook(Long bookId) {

@@ -1,7 +1,7 @@
 package mate.academy.intro.dto.shoppingcart;
 
 import lombok.Data;
-import mate.academy.intro.dto.cartItem.CartItemDto;
+import mate.academy.intro.dto.cartitem.CartItemDto;
 import java.util.List;
 
 @Data
