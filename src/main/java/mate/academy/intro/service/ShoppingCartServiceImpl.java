@@ -1,5 +1,6 @@
 package mate.academy.intro.service;
 
+import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import mate.academy.intro.dto.cartitem.CreateCartItemRequestDto;
 import mate.academy.intro.dto.shoppingcart.ShoppingCartDto;
@@ -11,7 +12,6 @@ import mate.academy.intro.model.CartItem;
 import mate.academy.intro.model.ShoppingCart;
 import mate.academy.intro.model.User;
 import mate.academy.intro.repository.book.BookRepository;
-import mate.academy.intro.repository.cartitem.CartItemRepository;
 import mate.academy.intro.repository.shoppingcart.ShoppingCartRepository;
 import org.springframework.stereotype.Service;
 
@@ -21,11 +21,11 @@ public class ShoppingCartServiceImpl implements ShoppingCartService {
     private final ShoppingCartMapper shoppingCartMapper;
     private final ShoppingCartRepository shoppingCartRepository;
     private final UserService userService;
-    private final CartItemRepository cartItemRepository;
     private final CartItemMapper cartItemMapper;
     private final BookRepository bookRepository;
 
     @Override
+    @Transactional
     public void addItem(CreateCartItemRequestDto createCartItemRequestDto) {
         ShoppingCart shoppingCart = getShoppingCartForUser();
         Book book = bookRepository.findById(createCartItemRequestDto.getBookId())
@@ -34,7 +34,7 @@ public class ShoppingCartServiceImpl implements ShoppingCartService {
         CartItem cartItem = cartItemMapper.toCartItem(createCartItemRequestDto);
         cartItem.setBook(book);
         cartItem.setShoppingCart(shoppingCart);
-        shoppingCart.getCartItems().add(cartItemRepository.save(cartItem));
+        shoppingCart.getCartItems().add(cartItem);
         shoppingCartRepository.save(shoppingCart);
     }
 
