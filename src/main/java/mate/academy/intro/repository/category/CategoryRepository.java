@@ -1,4 +1,4 @@
-package mate.academy.intro.repository.Category;
+package mate.academy.intro.repository.category;
 
 import mate.academy.intro.model.Category;
 import org.springframework.data.jpa.repository.JpaRepository;
