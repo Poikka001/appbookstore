@@ -33,3 +33,11 @@ databaseChangeLog:
       file: db/changelog/changes/16-create-cartitem-table.yaml
   - include:
       file: db/changelog/changes/17-insert-cartitem.yaml
+  - include:
+      file: db/changelog/changes/18-create-orders-tables.yaml
+  - include:
+      file: db/changelog/changes/19-insert-orders.yaml
+  - include:
+      file: db/changelog/changes/20-create-order-items-table.yaml
+  - include:
+      file: db/changelog/changes/21-insert-order-item.yaml
