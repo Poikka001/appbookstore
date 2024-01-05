@@ -1,0 +1,33 @@
+databaseChangeLog:
+  - changeSet:
+      id: insert-order-item
+      author: Bohun
+      changes:
+        - insert:
+            tableName: order_items
+            columns:
+              - column: { name: order_id, value: "1" }
+              - column: { name: book_id, value: "1" }
+              - column: { name: quantity, value: "1" }
+              - column: { name: price, value: "5" }
+        - insert:
+            tableName: order_items
+            columns:
+              - column: { name: order_id, value: "2" }
+              - column: { name: book_id, value: "2" }
+              - column: { name: quantity, value: "1" }
+              - column: { name: price, value: "5" }
+        - insert:
+            tableName: order_items
+            columns:
+              - column: { name: order_id, value: "3" }
+              - column: { name: book_id, value: "3" }
+              - column: { name: quantity, value: "2" }
+              - column: { name: price, value: "10" }
+        - insert:
+            tableName: order_items
+            columns:
+              - column: { name: order_id, value: "3" }
+              - column: { name: book_id, value: "2" }
+              - column: { name: quantity, value: "1" }
+              - column: { name: price, value: "5" }

@@ -9,7 +9,6 @@ import mate.academy.intro.model.Category;
 import mate.academy.intro.repository.category.CategoryRepository;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
-
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -28,7 +27,8 @@ public class CategoryServiceImpl implements CategoryService{
 
     @Override
     public CategoryDto save(CreateCategoryRequestDto categoryRequestDto) {
-        return categoryMapper.toDoCategory(categoryRepository.save(categoryMapper.toEntity(categoryRequestDto)));
+        return categoryMapper.toDoCategory(categoryRepository
+                .save(categoryMapper.toEntity(categoryRequestDto)));
     }
 
     @Override

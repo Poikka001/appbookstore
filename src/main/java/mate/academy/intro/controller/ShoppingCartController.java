@@ -30,7 +30,6 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/cart")
 public class ShoppingCartController {
     private final ShoppingCartService shoppingCartService;
-
     private final CartItemService cartItemService;
 
     @PreAuthorize("hasRole('USER')")
