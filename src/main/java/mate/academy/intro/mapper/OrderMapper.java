@@ -11,6 +11,7 @@ import org.mapstruct.Mapping;
         uses = OrderItemMapper.class)
 public interface OrderMapper {
     @Mapping(source = "user.id", target = "userId")
-    OrderDto toDto(Order order);
+    OrderDto toDtoOrder(Order order);
+
     Order toOrder(CreateOrderDto createOrderDto);
 }

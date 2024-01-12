@@ -77,6 +77,7 @@ public class CategoryController {
         if (auth.getName().startsWith("admin")) categoryService.deleteCategory(categoryId);
     }
 
+    @PreAuthorize("hasRole('USER')")
     @GetMapping("/{bookId}/books")
     @Operation(description = "Get books by category ID")
     @ApiResponse(responseCode = "200", description = "Books by category ID")
