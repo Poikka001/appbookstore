@@ -38,15 +38,14 @@ public class OrderServiceImpl implements OrderService {
 
         order.setOrderItems(orderItems);
         order.setTotal(total);
-        return orderMapper.toDto(orderRepository.save(order));
+        return orderMapper.toDtoOrder(orderRepository.save(order));
     }
-
 
     @Override
     public List<OrderDto> getAllOrders(Pageable pageable) {
         return orderRepository.getAllByUser(userService.getUserFromContext(),
                         pageable).stream()
-                .map(orderMapper::toDto)
+                .map(orderMapper::toDtoOrder)
                 .toList();
     }
 
@@ -55,6 +54,6 @@ public class OrderServiceImpl implements OrderService {
         Order order = orderRepository.findById(id)
                 .orElseThrow(() -> new EntityNotFoundException("Can't find order by id" + id));
         order.setStatus(updateOrderStatusDto.getStatus());
-        return orderMapper.toDto(orderRepository.save(order));
+        return orderMapper.toDtoOrder(orderRepository.save(order));
     }
 }
