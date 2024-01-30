@@ -50,10 +50,11 @@ public class CategoryController {
         return categoryService.getCategoryById(categoryId);
     }
 
-    @PreAuthorize("hasRole('ROLE_ADMIN')")
+    @PreAuthorize("hasRole('ADMIN')")
     @PostMapping
     @Operation(description = "Create new category")
-    @ApiResponse(responseCode = "200", description = "Create new category")
+    @ApiResponse(responseCode = "201", description = "Create new category")
+    @ResponseStatus(HttpStatus.CREATED)
     public CategoryDto createCategory(@RequestBody @Valid CreateCategoryRequestDto categoryRequestDto) {
         return categoryService.save(categoryRequestDto);
     }

@@ -4,6 +4,8 @@ import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
+
+import java.math.BigDecimal;
 import java.util.List;
 import java.util.Map;
 import lombok.RequiredArgsConstructor;
@@ -21,6 +23,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.data.domain.Page;
@@ -47,12 +50,24 @@ public class BookController {
         return bookService.search(pageable, params);
     }
 
-    @PreAuthorize("hasRole('ROLE_ADMIN')")
+    @PreAuthorize("hasRole('ADMIN')")
     @PostMapping
     @Operation(description = "Create new book")
-    @ApiResponse(responseCode = "200", description = "Create new book")
+    @ApiResponse(responseCode = "201", description = "Create new book")
+    @ResponseStatus(HttpStatus.CREATED)
     public BookDto createBook(@RequestBody @Valid CreateBookRequestDto bookRequestDto) {
         return bookService.save(bookRequestDto);
+    }
+
+    @GetMapping("/price")
+    @Operation(description = "Get all books by price")
+    @ApiResponse(responseCode = "200", description = "All books by price")
+    public List<BookDto> getAll(
+            @RequestParam(required = false) BigDecimal fromPrice,
+            @RequestParam(required = false) BigDecimal toPrice,
+            Pageable pageable
+    ) {
+        return bookService.findAllByPriceInService(fromPrice, toPrice, pageable);
     }
 
     @PreAuthorize("hasRole('ROLE_ADMIN')")

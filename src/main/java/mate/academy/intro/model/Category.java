@@ -7,10 +7,10 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.Table;
+import jakarta.transaction.Transactional;
 import lombok.Data;
 import org.hibernate.annotations.SQLDelete;
 import org.hibernate.annotations.Where;
-
 import java.util.List;
 
 @Data
@@ -18,6 +18,7 @@ import java.util.List;
 @SQLDelete(sql = "UPDATE categories SET is_deleted = true WHERE id=?")
 @Where(clause = "is_deleted=false")
 @Table(name = "categories")
+@Transactional
 public class Category {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
